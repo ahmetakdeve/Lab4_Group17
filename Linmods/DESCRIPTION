@@ -1,0 +1,10 @@
+Package: Linmods
+Type: Package
+Title: Creating linear regression model
+Version: 1.0
+Date: 2019-09-29
+Author: Ahmet Akdeve
+Maintainer: Ahmet Akdeve <ahmak554@student.liu.se>
+Description: More about what it does (maybe more than one line)
+License: GPL-2
+RoxygenNote: 6.1.1
