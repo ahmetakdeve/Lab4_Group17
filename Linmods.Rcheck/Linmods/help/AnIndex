@@ -1,0 +1,9 @@
+Linmods-package	Linmods
+coef.linreg	coef.linreg
+Linmods	Linmods
+linreg	linreg
+plot.linreg	plot.linreg
+pred.linreg	pred.linreg
+print.linreg	print.linreg
+resid.linreg	resid.linreg
+summary.linreg	summary.linreg

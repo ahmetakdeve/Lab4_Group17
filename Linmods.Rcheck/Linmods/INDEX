@@ -1,0 +1,8 @@
+Linmods                 Linear regression models
+coef.linreg             Regression coefficients
+linreg                  Creating linear model
+plot.linreg             Print plots
+pred.linreg             Print values
+print.linreg            Prints the regression coefficients
+resid.linreg            Prints out the residuals of the model
+summary.linreg          Prints out the summary of the model

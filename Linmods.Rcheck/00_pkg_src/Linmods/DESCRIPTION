@@ -12,3 +12,5 @@ RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 Imports: ggplot2
+NeedsCompilation: no
+Packaged: 2019-09-26 13:33:45 UTC; Suat
