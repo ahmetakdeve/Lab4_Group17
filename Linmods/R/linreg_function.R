@@ -68,15 +68,18 @@ plot<-function(object)UseMethod("plot")
 #' @export
 
 plot.linreg<-function(object){
+  liu_theme<-theme_bw()+theme(panel.border = element_rect(color = "#00b9e7", size = 2),
+                              panel.background = element_rect(fill="#00b9e7"))
+  
   my_df<-data.frame("resids"=object[["resids"]],"yhat"=object[["yhat"]])
-  the_res_fit_plot<-ggplot(my_df,aes(y=resids,x=yhat))+geom_point()+theme_bw()+
+  the_res_fit_plot<-ggplot(my_df,aes(y=resids,x=yhat))+geom_point()+liu_theme+
     xlab("Fitted values")+ylab("Residuals")+ggtitle("Residuals vs Fitted ")+
     theme(plot.title = element_text(hjust=0.5))+geom_smooth(method = "lm",se = F,col="red")
   
   
   sqrt_stand_res<-sqrt((object[["resids"]]-mean(object[["resids"]]))/sd(object[["resids"]]))
   my_df2<-data.frame("std_res"<-sqrt_stand_res,"yhat"=object[["yhat"]])
-  scale_location_plot<-ggplot(my_df2,aes(y=std_res,x=yhat))+geom_point()+theme_bw()+
+  scale_location_plot<-ggplot(my_df2,aes(y=std_res,x=yhat))+geom_point()+liu_theme+
     xlab("Fitted values")+ylab("SQRT(Standardized residuals)")+ggtitle("Scale-Location")+
     theme(plot.title = element_text(hjust=0.5))+geom_smooth(method = "lm",se = F,col="red")
   

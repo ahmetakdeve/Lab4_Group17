@@ -15,4 +15,3 @@ This post a introduction to the package `linreg`. The package can be used to app
 The package `linreg` has several methods which are used to print tables and components which belongs to the regression model. The `print()`method outputs the formula and the coefficients of the method.
 The `plot()`is used to plot a scatterplot, residuals versus fitted values, and a scale-location plot.
 
-
