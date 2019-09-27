@@ -7,10 +7,59 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+## Introduction
 
-# Introduction
-
-This post a introduction to the package `linreg`. The package can be used to apply multiple linear regression.
-The package `linreg` has several methods which are used to print tables and components which belongs to the regression model. The `print()`method outputs the formula and the coefficients of the method.
+This post a introduction to the package `Linmods`. The package can be used to apply multiple linear regression.
+The package `Linmods` has several methods which are used to print tables and components which belongs to the regression model.`linreg` returns a list which contatins several statistics from the applied linear regression model. The returned list is of class "linreg". The `print()`method outputs the formula and the coefficients of the method.
 The `plot()` is used to plot a scatterplot, residuals versus fitted values, and a scale-location plot.
+`resid()` function returns the residuals *e*. `pred()`returns the predicted values and `coef()` returns the coefficients as a named vector.
+
+## Examples using "iris"
+```{r,results='hide'}
+example1<-Linmods::linreg(Petal.Length~Sepal.Length+Petal.Width,data=iris)
+```
+
+```{r}
+class(example1)
+```
+We did run a linear regression with the "linreg" function in the "Linmods" package and did get a list of class "linreg" as result.
+
+### Print()
+`Print()` is a method of the "linreg" function. When you print a object of class "linreg", you will get a output with the formula of the model and the coefficients of the model.
+```{r}
+print(example1)
+```
+
+
+### Plot()
+The `plot()` is used to plot a scatterplot, residuals versus fitted values, and a scale-location plot.
+```{r,eval=FALSE}
+plot(example1)
+```
+
+### resid()
+Using the `resid()` method of class "linreg" you can get the residuals of the model.
+```{r,eval=FALSE}
+resid(example1)
+```
+
+### pred()
+Using the `resid` method of class "linreg" you can get the residuals of the model.
+```{r,eval=FALSE}
+pred(example1)
+```
+
+### coef()
+`coef()` gives you the coefficients as a named vector.
+```{r,eval=TRUE}
+coef(example1)
+```
+
+### summary()
+
+`summary()` can be used like:
+
+```{r,eval=TRUE}
+summary(example1)
+```
 

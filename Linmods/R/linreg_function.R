@@ -84,6 +84,18 @@ plot.linreg<-function(x,...){
   
   print(the_res_fit_plot)
   print(scale_location_plot)
+  
+  # layer1 <- ggplot(iris) + 
+  #   aes(x =  yhat, y = ccc$sq) +
+  #   geom_point()+
+  #   theme_bw()
+  # layer2 <- geom_line(aes(x = d$d2, y = d$d1))
+  # layer1 + layer2
+  # we tried to create a new data.frame d which contains the medians of different
+  # species, and we got a similar red line to the slides one. In the codes below,
+  # the d is the new data.frame which has two columns, the median of residuals and
+  # fitted values.
+
 }
 
 
@@ -128,7 +140,6 @@ pred<-function(object)UseMethod("pred")
 #' Output the predicted values of the dependent variable
 #' 
 #' @param object A object of class "linreg"
-#' 
 #' @export
 
 
