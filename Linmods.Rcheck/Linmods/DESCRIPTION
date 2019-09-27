@@ -13,5 +13,5 @@ Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 Imports: ggplot2
 NeedsCompilation: no
-Packaged: 2019-09-26 13:33:45 UTC; Suat
-Built: R 3.6.1; ; 2019-09-26 13:34:01 UTC; windows
+Packaged: 2019-09-27 11:53:08 UTC; Suat
+Built: R 3.6.1; ; 2019-09-27 11:53:18 UTC; windows

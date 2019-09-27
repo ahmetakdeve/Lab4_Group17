@@ -1,9 +1,9 @@
 ---
-title: "**Linmods-package vignette**"
+title: "Linmods"
 author: "*Ahmet Akdeve*"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry(linmods_vignette}
+  %\VignetteIndexEntry(Linmods}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
     
@@ -13,5 +13,6 @@ vignette: >
 
 This post a introduction to the package `linreg`. The package can be used to apply multiple linear regression.
 The package `linreg` has several methods which are used to print tables and components which belongs to the regression model. The `print()`method outputs the formula and the coefficients of the method.
-The `plot()`is used to plot a scatterplot, residuals versus fitted values, and a scale-location plot.
+The `plot()` is used to plot a scatterplot, residuals versus fitted values, and a scale-location plot.
+
 

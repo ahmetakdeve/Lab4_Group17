@@ -1,6 +1,5 @@
 Linmods                 Linear regression models
 coef.linreg             Regression coefficients
-linreg                  Creating linear model
 plot.linreg             Print plots
 pred.linreg             Print values
 print.linreg            Prints the regression coefficients

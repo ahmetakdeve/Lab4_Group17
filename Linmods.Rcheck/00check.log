@@ -25,7 +25,7 @@
 * checking for left-over files ... OK
 * checking index information ... WARNING
 Vignettes with missing or empty \VignetteIndexEntry:
-  linmods_vignette.Rmd
+  Linmods.Rmd
 See sections 'The INDEX file' and 'Package subdirectories' in the
 'Writing R Extensions' manual.
 * checking package subdirectories ... OK
@@ -43,13 +43,15 @@ See sections 'The INDEX file' and 'Package subdirectories' in the
 * checking foreign function calls ... OK
 * checking R code for possible problems ... NOTE
 linreg: no visible global function definition for 'model.frame'
+linreg: no visible global function definition for 'model.matrix'
+linreg: no visible global function definition for 'pt'
 plot.linreg: no visible binding for global variable 'resids'
 plot.linreg: no visible binding for global variable 'yhat'
 plot.linreg: no visible global function definition for 'sd'
 Undefined global functions or variables:
-  model.frame resids sd yhat
+  model.frame model.matrix pt resids sd yhat
 Consider adding
-  importFrom("stats", "model.frame", "sd")
+  importFrom("stats", "model.frame", "model.matrix", "pt", "sd")
 to your NAMESPACE file.
 * checking Rd files ... OK
 * checking Rd metadata ... OK

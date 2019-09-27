@@ -10,11 +10,11 @@ linreg<-function(formula,data){
   myqr<-qr(X)
   
   #Reg coefs
-  reg_coef<-backsolve(myqr$qr,qr.qty(myqr,y)[1:myqr$rank],myqr$rank)
+  reg_coef<-backsolve(myqr$qr,qr.qty(myqr,y)[1:r],myqr$rank)
   names(reg_coef)<-colnames(X)
   
   #Fitted Values
-  yhat<-X[,myqr$pivot[1:myqr$rank]]%*%reg_coef
+  yhat<-X[,myqr$pivot[1:r]]%*%reg_coef
   
   #The residuals
   resids<-y-yhat
@@ -42,6 +42,8 @@ linreg<-function(formula,data){
   
   return(stats_list)
 }
+linreg_mod <- linreg(Petal.Length~Sepal.Width+Sepal.Length, data=iris)
+linreg_mod[[7]]
 
 
 
@@ -75,6 +77,7 @@ plot.linreg<-function(x,...){
   print(scale_location_plot)
 }
 
+plot(linreg_mod)
 
 #' Prints the regression coefficients
 #' 
@@ -90,9 +93,11 @@ print.linreg<-function(x,...){
   mycall<-paste0("linreg(","formula = ",paste(theformula[2],"~ "),theformula[3],
                  paste(", data =",paste0(x[["data"]],")")))
   print(mycall)
-  print(x[[1]])
+  #coeffs<-as.vector(x[[1]])
+  #names(coeffs)<-rownames(x[[1]])
+  print(linreg_mod[[1]])
 }
-
+print(linreg_mod)
 
 resid<-function(object)UseMethod("resid")
 
@@ -147,6 +152,7 @@ summary.linreg<-function(object,...){
   lastline<-paste("Residual standard error:",round(sigma,5),"on",degrees,"degrees of freedom")
   print(lastline)
 }
+summary(linreg_mod)
 
 #' Regression coefficients
 #' 
@@ -158,10 +164,10 @@ summary.linreg<-function(object,...){
 #' @export
 
 coef.linreg<-function(object,...){
-
-  return(object[[1]])
+  #coef_vector<-as.vector(object[[1]])
+  #names(coef_vector)<-rownames(object[[1]])
+  return(linreg_mod[[1]])
 }
-
 
 
 

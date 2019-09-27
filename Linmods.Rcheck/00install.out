@@ -3,24 +3,6 @@
 ** R
 ** inst
 ** byte-compile and prepare package for lazy loading
-'data.frame':	150 obs. of  3 variables:
- $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
- $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
- $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
- - attr(*, "terms")=Classes 'terms', 'formula'  language Petal.Length ~ Sepal.Width + Sepal.Length
-  .. ..- attr(*, "variables")= language list(Petal.Length, Sepal.Width, Sepal.Length)
-  .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
-  .. .. ..- attr(*, "dimnames")=List of 2
-  .. .. .. ..$ : chr [1:3] "Petal.Length" "Sepal.Width" "Sepal.Length"
-  .. .. .. ..$ : chr [1:2] "Sepal.Width" "Sepal.Length"
-  .. ..- attr(*, "term.labels")= chr [1:2] "Sepal.Width" "Sepal.Length"
-  .. ..- attr(*, "order")= int [1:2] 1 1
-  .. ..- attr(*, "intercept")= int 1
-  .. ..- attr(*, "response")= int 1
-  .. ..- attr(*, ".Environment")=<environment: namespace:Linmods> 
-  .. ..- attr(*, "predvars")= language list(Petal.Length, Sepal.Width, Sepal.Length)
-  .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
-  .. .. ..- attr(*, "names")= chr [1:3] "Petal.Length" "Sepal.Width" "Sepal.Length"
 ** help
 *** installing help indices
 ** building package indices

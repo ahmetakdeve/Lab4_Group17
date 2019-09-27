@@ -1,41 +1,32 @@
-#' Creating linear model
-#'
-#' Linreg is a function which is fitting linear models
-#'
-#' @param formula The equation of the linear model
-#' @param data The dataset used when creating linear models
-#'
-#' @return The function generates several components of the linear model, including regression coefficients, fitted values and the residual variance
-#' 
-#' @importFrom stats model.matrix pt
-#' @import utils
-#' 
-#' @export
-
 linreg<-function(formula,data){
   data_name<-deparse(substitute(data))
-  
   utils::str(myframe <- model.frame(formula, data))
+  
   X <- model.matrix(formula,myframe)
   y<-myframe[,1]
   formula<-formula
+  
+  ## Firstly
+  myqr<-qr(X)
+  
   #Reg coefs
-  reg_coef<-solve(t(X)%*%X)%*%t(X)%*%y
+  reg_coef<-backsolve(myqr$qr,qr.qty(myqr,y)[1:myqr$rank],myqr$rank)
+  names(reg_coef)<-colnames(X)
   
   #Fitted Values
-  yhat<-X%*%reg_coef
+  yhat<-X[,myqr$pivot[1:myqr$rank]]%*%reg_coef
   
   #The residuals
-  resids<-y-X%*%reg_coef
+  resids<-y-yhat
   
   #Degrees of freedom
   df<-nrow(X)-ncol(X)
   
   #The residual variance
-  res_var<-(t(resids)%*%resids)/df
+  res_var<-crossprod(resids)/(nrow(X)-myqr$rank)
   
   #The variance of reg coefs
-  var_reg_coef<-diag(as.numeric(res_var)*solve(t(X)%*%X))
+  var_reg_coef<-diag(chol2inv(myqr$qr,myqr$rank)*as.numeric(res_var))
   
   #T-values of each coef
   t_values<-reg_coef/sqrt(var_reg_coef)
@@ -51,8 +42,8 @@ linreg<-function(formula,data){
   
   return(stats_list)
 }
-linreg_mod <- linreg(Petal.Length~Sepal.Width+Sepal.Length, data=iris)
-class(linreg_mod)
+
+
 
 #' Print plots
 #' 
@@ -97,13 +88,10 @@ plot.linreg<-function(x,...){
 print.linreg<-function(x,...){
   theformula<-as.character(x[["formula"]])  
   mycall<-paste0("linreg(","formula = ",paste(theformula[2],"~ "),theformula[3],
-                  paste(", data =",paste0(x[["data"]],")")))
+                 paste(", data =",paste0(x[["data"]],")")))
   print(mycall)
-  coeffs<-as.vector(x[[1]])
-  names(coeffs)<-rownames(x[[1]])
-  print(coeffs)
+  print(x[[1]])
 }
-
 
 
 resid<-function(object)UseMethod("resid")
@@ -120,7 +108,6 @@ resid<-function(object)UseMethod("resid")
 resid.linreg<-function(object){
   return(object[[3]])
 }
-
 
 
 pred<-function(object)UseMethod("pred")
@@ -159,8 +146,7 @@ summary.linreg<-function(object,...){
   degrees<-object[["df"]]
   lastline<-paste("Residual standard error:",round(sigma,5),"on",degrees,"degrees of freedom")
   print(lastline)
-  }
-
+}
 
 #' Regression coefficients
 #' 
@@ -172,9 +158,10 @@ summary.linreg<-function(object,...){
 #' @export
 
 coef.linreg<-function(object,...){
-  coef_vector<-as.vector(object[[1]])
-  names(coef_vector)<-rownames(object[[1]])
-  return(coef_vector)
+
+  return(object[[1]])
 }
+
+
 
 
