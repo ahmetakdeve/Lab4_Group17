@@ -1,3 +1,13 @@
+#' Creating the dataframes and calculates the statistics
+#' 
+#' Creating the dataframes and calculates the statistics 
+#' 
+#' @param formula A object of class "formula"
+#' @param data Dataset to use for the linear regression model
+#' 
+#' @import stats
+#' @export
+
 linreg<-function(formula,data){
   data_name<-deparse(substitute(data))
   utils::str(myframe <- model.frame(formula, data))
@@ -43,6 +53,7 @@ linreg<-function(formula,data){
   return(stats_list)
 }
 
+linreg_mod <- linreg(Petal.Length~Sepal.Width+Sepal.Length, data=iris)
 
 
 #' Print plots
@@ -60,14 +71,14 @@ plot.linreg<-function(x,...){
                               panel.background = element_rect(fill="#00b9e7"))
   
   my_df<-data.frame("resids"=x[["resids"]],"yhat"=x[["yhat"]])
-  the_res_fit_plot<-ggplot(my_df,aes(y=resids,x=yhat))+geom_point()+liu_theme+
+  the_res_fit_plot<-ggplot(my_df,aes(y=my_df$resids,x=my_df$yhat))+geom_point()+liu_theme+
     xlab("Fitted values")+ylab("Residuals")+ggtitle("Residuals vs Fitted ")+
     theme(plot.title = element_text(hjust=0.5))+geom_smooth(method = "lm",se = F,col="red")
   
   
   sqrt_stand_res<-sqrt((x[["resids"]]-mean(x[["resids"]]))/sd(x[["resids"]]))
   my_df2<-data.frame("std_res"<-sqrt_stand_res,"yhat"=x[["yhat"]])
-  scale_location_plot<-ggplot(my_df2,aes(y=std_res,x=yhat))+geom_point()+liu_theme+
+  scale_location_plot<-ggplot(my_df2,aes(y=std_res,x=my_df2$yhat))+geom_point()+liu_theme+
     xlab("Fitted values")+ylab("SQRT(Standardized residuals)")+ggtitle("Scale-Location")+
     theme(plot.title = element_text(hjust=0.5))+geom_smooth(method = "lm",se = F,col="red")
   
